@@ -2,7 +2,7 @@ def main():
   print('Transformar Minutos em Horas/Minutos')
   print('-------------')
   
-  mn =int(input('Qual valor em Minutos?: '))
+  mn = int(input('Qual valor em Minutos?: '))
   print('--------------')
   
   resultado_horas = int(mn / 60)
