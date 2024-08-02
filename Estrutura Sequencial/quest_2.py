@@ -9,6 +9,6 @@ def main():
   mn2 = hr * 60
   resultado = mn2 + mn
   
-  print (f'O resultado é {resultado} Minutos !')
+  print (f'O resultado é {resultado} Minutos!')
 
 main()
