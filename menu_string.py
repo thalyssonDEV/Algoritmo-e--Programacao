@@ -23,8 +23,11 @@ def option_1(fin,quantity_letters):
         else:
             continue
 
-def option_2(fin,letter_to_remove):          
+def option_2(fin,letter_to_remove):         
+    total_words = 0
+    deleted_words = 0
     for line in fin:
+        total_words += 1
 
         word = line.strip()
         formated_word = remove_space(word)
@@ -34,9 +37,13 @@ def option_2(fin,letter_to_remove):
 
             if character != letter_to_remove:
                 new_word += character
+        deleted_words += 1
         
         if new_word != '':
             print(new_word)
+    
+    print(total_words)
+    print(deleted_words)
 
 def option_3(fin,removed_words):
     list_removed_words = []
@@ -53,15 +60,34 @@ def option_3(fin,removed_words):
             else:
                 words_without_prohibited_letters += 1
     
-    print(f"O Arquivo Possui {words_without_prohibited_letters} Palavras que Não Incluem esses Caracteres")
+    print(f"\033[35mO Arquivo Possui {words_without_prohibited_letters} Palavras que Não Incluem esses Caracteres\033[m")
 
-def option_4(word):
+def option_4(word,characters_in_word):
     list_letters = []
-    for index in removed_words:
+    for index in characters_in_word:
 
         if index != " ":
             list_letters.append(index)
 
+    for letter in word:
+        if letter in list_letters:
+            print("\033[95mA Palavra Contém Pelo Menos 1 Caractere da Lista\033[m")
+            break
+    else:
+        print("\033[95mA Palavra Não Contém Nenhum Caractere da Lista\033[m")
+    
+# def option_5(fin,mandatory_letters):
+#     list_letters = []
+#     for index in mandatory_letters:
+        
+#         if index != " ":
+#             list_letters.append(index)
+
+#     for lines in fin:
+#         for letters in lines:
+#             if letters not in list_letters:
+#                 break
+#         print(lines)
 
 def show_menu():
     print("""\033[36m
@@ -69,6 +95,8 @@ def show_menu():
 \033[33m[ 1 ] - PALAVRAS COM MAIS DE 20 LETRAS
 [ 2 ] - PALAVRAS SEM A LETRA "E"
 [ 3 ] - PALAVRAS SEM "X" LETRAS
+[ 4 ] - EM MANUTENÇÃO
+[ 5 ] - 
 [ 0 ] - SAIR
 \033[m""")
 
@@ -101,9 +129,16 @@ def main():
         
         if choice == 4:
             word = str(input("Digite a Palavra: "))
+            characters_in_word = str(input("""Digite as Letras que Devem estar Contidas na Palavra [\033[31mEx: a b c d\033[m]:
+--> """))
 
-            option_4()
+            option_4(word,characters_in_word)
 
         fin = open(fin.name)
+
+#         if choice == 5:
+#             mandatory_letters = str(input("""Digite as Letras Obrigatórias nas Palavras [\033[31mEx: a b c d\033[m]:
+# --> """))
+#             option_5(fin,mandatory_letters)
 
 main()
