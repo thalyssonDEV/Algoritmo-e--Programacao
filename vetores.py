@@ -4,13 +4,10 @@ def menu():
     print("""        \033[35m====== MANIPULADOR DE VETORES =======\033[m
 [ 1 ] - INICIALIZAR VETOR
 [ 2 ] - MOSTRAR TODOS OS VALORES DO VETOR
-          
+[ 3 ] -
+[ 4 ] - VER QUANTIDADE DE ITENS NO VETOR
+
           """)
-
-
-
-
-
 
 def main():
     name = str(input(utils.color("Digite Seu Nome de Usuário: ",36)))
@@ -32,11 +29,25 @@ def main():
             utils.wait_press_enter()
             utils.clean_screen()
             menu()
-        
+
         if choice == 2:
             print(utils.color("VETOR ATUAL -->",34),vetor_atual,"\n")
             utils.wait_press_enter()
             utils.clean_screen()
             menu()
 
+        if choice == 3:
+            pass
+
+        if choice == 4:
+            pass
+
+        if choice == 5:
+            pass
+
+        if choice == 6:
+            somatorio = utils.sum_values(vetor_atual)
+
+            print(utils.color(f"\nO Somatório dos Vetores é {somatorio}",31))
+            
 main()
