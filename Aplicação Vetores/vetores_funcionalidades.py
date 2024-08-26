@@ -4,9 +4,18 @@ import sys
 import time
 
 
+from cores import BOLD, CYAN, RED, RESET
+
+
+def wait_press_enter_and_clean(text="PRESS ENTER"):
+
+  input(f"{RED}{BOLD}{text}{RESET}")
+  clean_screen()
+
+
 def wait_press_enter():
 
-  input(color("PRESS ENTER", "laranja"))
+  input(f"{RED}{BOLD}PRESS ENTER")
 
 
 def clean_screen():
@@ -23,23 +32,6 @@ def print_slow(text,delay = 0.015):
   print()
 
 
-def color(array,codigo_cor):
-  
-  array_codigos = {
-      "vermelho": 31,
-      "verde_claro": 32,
-      "laranja": 33,
-      "azul_escuro": 34,
-      "roxo": 35,
-      "azul_claro": 36
-  }
-  color = array_codigos.get(codigo_cor)
-
-  new_array = "\033[" + str(color) + "m" + array + "\033[m"
-
-  return new_array
-
-
 def get_random_vector(tamanho,minimo,maximo):
   
   vetor = []
@@ -48,6 +40,27 @@ def get_random_vector(tamanho,minimo,maximo):
 
   return vetor
   
+
+def create_vector(tamanho):
+
+  posicao = 1
+  vetor_manual = []
+  for _ in range(tamanho):
+    valor = int(input(f"{CYAN}Digite o Valor {posicao}:{RESET} "))
+    vetor_manual.append(valor)
+    posicao += 1
+
+  return vetor_manual
+
+
+def extract_file(fin):
+  
+  vetor_arquivo = []
+  for line in fin:
+    vetor_arquivo.append(int(line.strip()))
+
+  return vetor_arquivo
+
 
 def sum_values(vetor_atual):
  
@@ -157,7 +170,7 @@ def add_to_vector(qtd_valores,vetor_atual):
   
   posicao = 1
   for _ in range(qtd_valores):
-    valor_novo = int(input(color(f"Valor {posicao}: ","azul_claro")))
+    valor_novo = int(input(f"{CYAN}Valor {posicao}:{RESET} "))
     vetor_atual.append(valor_novo)
     posicao += 1
 
@@ -179,7 +192,7 @@ def remover_exact_value(qtd_num_removidos,vetor_atual):
   lista_removidos = []
   vetor_novo = []
   for _ in range(qtd_num_removidos):
-    valor_removido = float(input(color(f"{posicao}º Valor Removido: ","azul_claro")))
+    valor_removido = float(input(f"{CYAN}{posicao}º Valor Removido:{RESET} "))
     lista_removidos.append(valor_removido)
     posicao += 1
 
@@ -196,7 +209,7 @@ def remove_by_position(qtd_num_removidos,vetor_atual):
   lista_removidos = []
   vetor_novo = []
   for _ in range(qtd_num_removidos):
-    posicao_removida = int(input(color(f"Posição do {posicao}º Valor Removido: ","azul_claro")))
+    posicao_removida = int(input(f"{CYAN}Posição do {posicao}º Valor Removido:{RESET} "))
     lista_removidos.append(vetor_atual[posicao_removida-1])
     posicao += 1
 
@@ -219,6 +232,7 @@ def save_file(vetor_atual,nome_arquivo):
   with open(f'{nome_arquivo}.txt', 'w') as arquivo:
     for item in vetor_atual:
       arquivo.write(f"{item}\n")
+
 
 def lowercase_name(name):
   
@@ -246,7 +260,7 @@ def get_min_and_max(vetor_atual):
   return menor,maior
 
 
-def get_position_numbers(menor,maior,vetor_atual): ## ARRUMAR
+def get_position_numbers(menor,maior,vetor_atual):
 
   posicao_maior = 1
   for char in vetor_atual:
@@ -264,26 +278,26 @@ def get_position_numbers(menor,maior,vetor_atual): ## ARRUMAR
 
   return posicao_menor,posicao_maior
   
-# def progress_bar(percentual, largura=40, mensagem="SALVANDO"):
+def progress_bar(percentual, largura=40, mensagem="SALVANDO"):
   
-#   preenchido = int(percentual / 100 * largura)
-#   barra = '█' * preenchido + '░' * (largura - preenchido)
+  preenchido = int(percentual / 100 * largura)
+  barra = '█' * preenchido + '░' * (largura - preenchido)
 
-#   animacao_reticencias = ['.', '..', '...']
-#   animacao = animacao_reticencias[int((percentual / 100) * len(animacao_reticencias)) % len(animacao_reticencias)]
+  animacao_reticencias = ['.', '..', '...']
+  animacao = animacao_reticencias[int((percentual / 100) * len(animacao_reticencias)) % len(animacao_reticencias)]
 
-#   progresso = f'\r[{barra}] {mensagem} {percentual:.0f}% {animacao}'
-#   sys.stdout.write(progresso)
-#   sys.stdout.flush()
+  progresso = f'\r[{barra}] {mensagem} {percentual:.0f}% {animacao}'
+  sys.stdout.write(progresso)
+  sys.stdout.flush()
 
 
-# def loading_simulator(tempo_total=3, largura_barra=50):
+def loading_simulator(tempo_total=3, largura_barra=50):
   
-#   intervalos = 100
-#   intervalo_tempo = tempo_total / intervalos
+  intervalos = 100
+  intervalo_tempo = tempo_total / intervalos
 
-#   for i in range(intervalos + 1):
-#       percentual = i
-#       progress_bar(percentual, largura_barra)
-#       time.sleep(intervalo_tempo)
-#   print()
+  for i in range(intervalos + 1):
+      percentual = i
+      progress_bar(percentual, largura_barra)
+      time.sleep(intervalo_tempo)
+  print()
