@@ -1,5 +1,5 @@
 from cores import GREEN,BOLD,YELLOW,BLUE,MAGENTA,RESET,CYAN,RED,LIGHT_BLUE,LIGHT_YELLOW
- 
+
 ## FISHER-YATES
 explicacao_fisher_yates = f"""
   {GREEN}{BOLD}A Mágica do Embaralhamento: Algoritmo de Fisher-Yates{RESET}
@@ -23,7 +23,7 @@ explicacao_fisher_yates = f"""
   {CYAN}Dessa Forma, Temos:{RESET} {BOLD}Uma Mistura Justa e Aleatória dos Elementos do Vetor!{RESET}
 
   {BOLD}===================|||||||||======================={RESET}
-  
+
   {RED}{BOLD}Código do Algoritmo Fisher-Yates:{RESET}
 
     import {BLUE}random{RESET}
@@ -57,7 +57,7 @@ explicacao_bubble_sort = f"""
   {MAGENTA}Por Que o Algoritmo é Eficiente?{RESET} {BOLD}É Uma Forma Amigável e Simples de Ordenar Elementos, Embora Não Seja a Mais Rápida para Listas Grandes!{RESET}
 
   {CYAN}Dessa Forma, Temos:{RESET} {BOLD}Uma Ordenação Simples e Eficiente dos Elementos no Vetor!{RESET}
-  
+
   {BOLD}===================|||||||||======================={RESET}
 
   {RED}{BOLD}Código do Algoritmo Bubble Sort:{RESET}
@@ -66,10 +66,10 @@ explicacao_bubble_sort = f"""
       {BLUE}for{RESET} z {BLUE}in{RESET} {LIGHT_YELLOW}range{RESET}({LIGHT_YELLOW}len{RESET}(vector)):
         {BLUE}for{RESET} z {BLUE}in{RESET} {LIGHT_YELLOW}range{RESET}({LIGHT_YELLOW}len{RESET}(vector){LIGHT_BLUE}-{RESET}{GREEN}1{RESET}):
           {BLUE}if{RESET} vector[z] {LIGHT_BLUE}>{RESET} vector[z {LIGHT_BLUE}+{RESET} {GREEN}1{RESET}]:
-    
+
             maior {LIGHT_BLUE}={RESET} vector[z]
             vector[z] {LIGHT_BLUE}={RESET} vector[z {LIGHT_BLUE}+{RESET} {GREEN}1{RESET}]
             vector[z {LIGHT_BLUE}+{RESET} {GREEN}1{RESET}] {LIGHT_BLUE}={RESET} maior
-    
+
       {BLUE}return{RESET} vector
 """
