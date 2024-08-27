@@ -58,7 +58,7 @@ def main():
     name = str(input(f"\n{LIGHT_GREEN}{BOLD}Digite Seu Nome de Usuário:{RESET} "))
     utils.clean_screen()
 
-    utils.print_slow(f"\n{BLUE}Olá {LIGHT_YELLOW}{BOLD}{name},{RESET} {BLUE}Bem Vindo ao Manipulador de Vetores{RESET}\n")
+    utils.print_slow(f"\n{BLUE}Olá {LIGHT_YELLOW}{BOLD}{name}{RESET}{BLUE}, Bem Vindo ao Manipulador de Vetores{RESET}\n")
     utils.print_slow(f"{BLUE}Lembre-se de Que é Necessário {BOLD}Inicializar um Vetor{RESET} {BLUE}Para Ter Acesso às suas Funcionalidades{RESET}\n")
 
     opcao = 1
@@ -79,16 +79,19 @@ def main():
                 tamanho,maximo,minimo = map(int,input(f"""\n{CYAN}Digite o Tamanho, Número Mínimo e Número Máximo do seu Vetor, Respectivamente{RESET} {BOLD}[Ex: 10 1 100]:{RESET}
 --> """).split())
                 vetor_atual = utils.get_random_vector(tamanho,maximo,minimo)
-            
+
             if modo == 2:
                 tamanho = int(input(f"\n{CYAN}Digite a Quantidade de Itens que o Vetor irá Conter:{RESET} "))
                 vetor_atual = utils.create_vector(tamanho)
 
             if modo == 3:
-                fin = open(str(input(f"""\n{CYAN}Digite o Nome do Arquivo{RESET} {BOLD}[Ex: arquivo.txt]:{RESET}
---> """)).strip())
-                vetor_atual = utils.extract_file(fin)
+                nome_arquivo = str(input(f"""\n{CYAN}Digite o Nome do Arquivo{RESET} {BOLD}[Ex: arquivo]:{RESET}
+--> """)).strip() + ".txt"
                 
+                fin = open(nome_arquivo,"r")
+                
+                vetor_atual = utils.extract_file(fin)
+
             utils.clean_screen()
             print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
             utils.wait_press_enter_and_clean()
@@ -96,7 +99,7 @@ def main():
         if opcao == 2:
             utils.clean_screen()
             print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-            
+
             utils.wait_press_enter_and_clean()
 
         if opcao == 3:
@@ -113,7 +116,7 @@ def main():
         if opcao == 4:
             utils.clean_screen()
             print(f"\n{LIGHT_GREEN}Quantidade de Valores -->{RESET} {len(vetor_atual)}\n")
-            
+
             utils.wait_press_enter_and_clean()
 
         if opcao == 5:
@@ -121,24 +124,24 @@ def main():
             menor,maior = utils.get_min_and_max(vetor_atual)
             posicao_menor,posicao_maior = utils.get_position_numbers(menor,maior,vetor_atual)
 
-            
+
             print(f"""{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}
 
-{LIGHT_GREEN}MAIOR -->{RESET} {maior}
 {LIGHT_GREEN}MENOR -->{RESET} {menor}
+{LIGHT_GREEN}MAIOR -->{RESET} {maior}
 
 {LIGHT_GREEN}POSIÇÃO MENOR{RESET} --> {posicao_menor}
 {LIGHT_GREEN}POSIÇÃO MAIOR{RESET} --> {posicao_maior}\n""""")
 
             utils.wait_press_enter_and_clean()
-        
+
         if opcao == 6:
             somatorio = utils.sum_values(vetor_atual)
-            
+
             utils.clean_screen()
-            
+
             print(f"\n{LIGHT_GREEN}Somatório dos Valores -->{RESET} {somatorio}\n")
-            
+
             utils.wait_press_enter_and_clean()
 
         if opcao == 7:
@@ -153,6 +156,7 @@ def main():
             parameter = 2
             numeros_positivos = utils.get_posivites_negatives(parameter,vetor_atual)
 
+            utils.clean_screen()
             print(f"\n{LIGHT_GREEN}NÚMEROS POSITIVOS NO VETOR -->{RESET} {numeros_positivos}")
             print(f"{LIGHT_GREEN}QUANTIDADE -->{RESET} {len(numeros_positivos)}\n")
 
@@ -162,6 +166,7 @@ def main():
             parameter = 1
             numeros_negativos = utils.get_posivites_negatives(parameter,vetor_atual)
 
+            utils.clean_screen()
             print(f"\n{LIGHT_GREEN}NÚMEROS NEGATIVOS NO VETOR -->{RESET} {numeros_negativos}")
             print(f"{LIGHT_GREEN}QUANTIDADE -->{RESET} {len(numeros_negativos)}\n")
 
@@ -179,61 +184,61 @@ def main():
                     utils.clean_screen()
 
                 if opcao_regras == 1:
-                    valor = int(input(f"\n{CYAN}Por Qual Valor Deseja Multiplicar o Vetor?:{RESET} "))
-    
+                    valor = float(input(f"\n{CYAN}Por Qual Valor Deseja Multiplicar o Vetor?:{RESET} "))
+
                     vetor_atual = utils.multiply_vector(vetor_atual,valor)
-    
+
                     utils.clean_screen()
                     print(f"{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-    
+
                     utils.wait_press_enter_and_clean()
-    
+
                 if opcao_regras == 2:
                     valor = int(input(f"\n{CYAN}Por Qual Valor Deseja Elevar o Vetor?:{RESET} "))
-    
+
                     vetor_atual = utils.elevate_vector(valor,vetor_atual)
-    
+
                     utils.clean_screen()
                     print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-    
+
                     utils.wait_press_enter_and_clean()
-    
+
                 if opcao_regras == 3:
                     numerador,denominador = map(int,input(f"""\n{CYAN}Digite a Fração que Deseja Dividir{RESET} {BOLD}[Ex: 1/3]:{RESET}
 --> """).split("/"))
-    
+
                     vetor_atual = utils.division_vector(vetor_atual,numerador,denominador)
-    
+
                     utils.clean_screen()
                     print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-    
+
                     utils.wait_press_enter_and_clean()
-                
+
                 if opcao_regras == 4:
                     min,max = map(int,input(f"""\n{CYAN}Digite o Valor Mínimo e Máximo do Novos Números, Respectivamente {RESET}{BOLD}[Ex: 1 10]:{RESET}
 --> """).split())
-    
+
                     vetor_atual = utils.replace_vector_negative(min,max,vetor_atual)
-    
+
                     utils.clean_screen()
                     print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-    
+
                     utils.wait_press_enter_and_clean()
-    
+
                 if opcao_regras == 5:
                     vetor_atual = utils.sort_vector(vetor_atual)
-    
+
                     utils.clean_screen()
                     print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-    
+
                     utils.wait_press_enter_and_clean()
-    
+
                 if opcao_regras == 6:
                     vetor_atual = utils.shuffle_vector(vetor_atual)
-    
+
                     utils.clean_screen()
                     print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-    
+
                     utils.wait_press_enter_and_clean()
 
         if opcao == 11:
@@ -241,9 +246,9 @@ def main():
             qtd_valores = int(input(f"\n{CYAN}Quantos Valores Deseja Adicionar?:{RESET} "))
 
             vetor_atual = utils.add_to_vector(qtd_valores,vetor_atual)
-            
+
             print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-            
+
             utils.wait_press_enter_and_clean()
 
         if opcao == 12:
@@ -251,9 +256,9 @@ def main():
             print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
 
             qtd_num_removidos = int(input((f"{CYAN}Quantos Valores Deseja Remover?:{RESET} ")))
-            
+
             vetor_atual = utils.remover_exact_value(qtd_num_removidos,vetor_atual)
-                
+
             utils.clean_screen()
             print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
 
@@ -262,7 +267,7 @@ def main():
         if opcao == 13:
             utils.clean_screen()
             print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-            
+
             qtd_num_removidos = int(input((f"{CYAN}Quantos Valores Deseja Remover?:{RESET} ")))
 
             vetor_atual = utils.remove_by_position(qtd_num_removidos,vetor_atual)
@@ -275,34 +280,42 @@ def main():
         if opcao == 14:
             utils.clean_screen()
             print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
-            
+
             posicao_editada = int(input(f"{CYAN}Qual Posição Deseja Editar?:{RESET} "))
             valor_novo = int(input(f"{CYAN}Que Valor Deseja Inserir na Posição?:{RESET} "))
-            
+
             vetor_atual = utils.edit_value_by_position(vetor_atual,posicao_editada,valor_novo)
 
             utils.clean_screen()
             print(f"\n{LIGHT_GREEN}VETOR ATUAL -->{RESET} {vetor_atual}\n")
 
             utils.wait_press_enter_and_clean()
-            
+
         if opcao == 15:
             utils.clean_screen()
-            nome_arquivo = str(input((f"\n{CYAN}Digite o Nome do Arquivo:{RESET} ")))
-            
+            nome_arquivo = str(input((f"""\n{CYAN}Digite o Nome do Arquivo{RESET} {BOLD}[Ex: arquivo]:
+--> {RESET}""")))
+
+            utils.clean_screen()
             print("\n")
             utils.loading_simulator()
-            utils.clean_screen()
             utils.save_file(vetor_atual,nome_arquivo)
-            
+            utils.clean_screen()
+
             print(f'\n{YELLOW}{BOLD}ARQUIVO{RESET} {BOLD}"{nome_arquivo}" {YELLOW}SALVO COM SUCESSO{RESET}\n')
-            
+
             utils.wait_press_enter_and_clean()
 
         if opcao == 16:
             nome_arquivo = utils.lowercase_name(name)
 
+            utils.clean_screen()
+            print("\n")
+            utils.loading_simulator()
+            utils.clean_screen()
             utils.save_file(vetor_atual,nome_arquivo)
+
+            print(f'\n{YELLOW}{BOLD}ARQUIVO{RESET} {BOLD}"{nome_arquivo}" {YELLOW}SALVO AUTOMATICAMENTE{RESET}\n')
 
         if opcao == 17:
             utils.clean_screen()
@@ -313,7 +326,7 @@ def main():
                 menu_documentacao()
                 opcao_docs = int(input(f"\n{CYAN}Digite a Funcionalidade:{RESET} "))
                 utils.clean_screen()
-    
+
                 if opcao_docs == 1:
                     utils.print_slow(docs.explicacao_bubble_sort,delay=0.005)
                     utils.wait_press_enter_and_clean(text="PRESSIONE ENTER PARA PROSSEGUIR")
@@ -321,5 +334,5 @@ def main():
                 if opcao_docs == 2:
                     utils.print_slow(docs.explicacao_fisher_yates,delay=0.005)
                     utils.wait_press_enter_and_clean(text="PRESSIONE ENTER PARA PROSSEGUIR")
-                
+
 main()
