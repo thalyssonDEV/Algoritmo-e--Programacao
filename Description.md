@@ -40,7 +40,7 @@ Cada pasta contém:
 
 Caso tenha dúvidas ou sugestões, sinta-se à vontade para entrar em contato:
 
-- **Nome**: [Seu Nome]
+- **Github**: [thalyssonDEV]
 - **E-mail**: [youremail@example.com](mailto:youremail@example.com)
 - **LinkedIn**: [Seu LinkedIn](https://www.linkedin.com/in/seunome)
 
