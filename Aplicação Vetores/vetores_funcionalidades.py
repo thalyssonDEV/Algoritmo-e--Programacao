@@ -3,7 +3,6 @@ import random
 import sys
 import time
 
-
 from cores import BOLD, CYAN, RED, RESET
 
 
@@ -24,7 +23,7 @@ def clean_screen():
 
 
 def print_slow(text,delay = 0.015):
-  
+
   for char in text:
       sys.stdout.write(char)
       sys.stdout.flush()
@@ -33,13 +32,13 @@ def print_slow(text,delay = 0.015):
 
 
 def get_random_vector(tamanho,minimo,maximo):
-  
+
   vetor = []
   for _ in range(tamanho):
     vetor.append(random.randint(minimo,maximo))
 
   return vetor
-  
+
 
 def create_vector(tamanho):
 
@@ -54,16 +53,16 @@ def create_vector(tamanho):
 
 
 def extract_file(fin):
-  
+
   vetor_arquivo = []
   for line in fin:
-    vetor_arquivo.append(int(line.strip()))
+    vetor_arquivo.append(float(line.strip()))
 
   return vetor_arquivo
 
 
 def sum_values(vetor_atual):
- 
+
   soma_total = 0
   for char in vetor_atual:
     soma_total += char
@@ -72,7 +71,7 @@ def sum_values(vetor_atual):
 
 
 def get_media(vetor_atual):
-  
+
   soma_total = 0
   qtd_char = 0
   for char in vetor_atual:
@@ -83,7 +82,7 @@ def get_media(vetor_atual):
 
 
 def get_posivites_negatives(parameter,vetor_atual):
- 
+
   match parameter:
     case 1:
       vetor_negativos = []
@@ -92,7 +91,7 @@ def get_posivites_negatives(parameter,vetor_atual):
           vetor_negativos.append(char)
 
       return vetor_negativos
-    
+
     case 2:
       vetor_positivos = []
       for char in vetor_atual:
@@ -103,7 +102,7 @@ def get_posivites_negatives(parameter,vetor_atual):
 
 
 def multiply_vector(vetor_atual,valor):
-  
+
   vetor_multiplicado = []
   for char in vetor_atual:
     vetor_multiplicado.append(char * valor)
@@ -112,7 +111,7 @@ def multiply_vector(vetor_atual,valor):
 
 
 def elevate_vector(valor,vetor_atual):
-  
+
   vetor_elevado = []
   for char in vetor_atual:
     for _ in range(valor-1):
@@ -123,12 +122,12 @@ def elevate_vector(valor,vetor_atual):
 
 
 def replace_vector_negative(min,max,vetor_atual):
-  
+
   index = 0
   for char in vetor_atual:
     if char < 0:
       vetor_atual[index] = random.randint(min,max)
-    
+
     index += 1
 
   return vetor_atual
@@ -148,16 +147,16 @@ def sort_vector(vetor_atual):
 
 
 def shuffle_vector(vetor_atual):
-    
+
   for i in range(len(vetor_atual) - 1, 0, -1):
         j = random.randint(0, i)
         vetor_atual[i], vetor_atual[j] = vetor_atual[j], vetor_atual[i]
-    
+
   return vetor_atual
 
 
 def division_vector(vetor_atual,numerador,denominador):
-  
+
   vetor_dividido = []
   for char in vetor_atual:
     valor_arredondado = round((char * numerador) / denominador, 1)
@@ -167,7 +166,7 @@ def division_vector(vetor_atual,numerador,denominador):
 
 
 def add_to_vector(qtd_valores,vetor_atual):
-  
+
   posicao = 1
   for _ in range(qtd_valores):
     valor_novo = int(input(f"{CYAN}Valor {posicao}:{RESET} "))
@@ -178,7 +177,7 @@ def add_to_vector(qtd_valores,vetor_atual):
 
 
 def reset_vector(vetor_atual,valor_padrao):
-  
+
   vetor_resetado = []
   for _ in range(len(vetor_atual)):
     vetor_resetado.append(valor_padrao)
@@ -221,21 +220,21 @@ def remove_by_position(qtd_num_removidos,vetor_atual):
 
 
 def edit_value_by_position(vetor_atual,posicao_editada,valor_novo):
-  
+
   vetor_atual[posicao_editada-1] = valor_novo
 
   return vetor_atual
 
 
 def save_file(vetor_atual,nome_arquivo):
-  
+
   with open(f'{nome_arquivo}.txt', 'w') as arquivo:
     for item in vetor_atual:
       arquivo.write(f"{item}\n")
 
 
 def lowercase_name(name):
-  
+
   new_name = ""
   for char in name:
     if "A" <= char <= "Z":
@@ -253,7 +252,7 @@ def get_min_and_max(vetor_atual):
   for char in vetor_atual:
     if char > maior:
       maior = char
-    
+
     if char < menor:
       menor = char
 
@@ -277,9 +276,9 @@ def get_position_numbers(menor,maior,vetor_atual):
       break
 
   return posicao_menor,posicao_maior
-  
+
 def progress_bar(percentual, largura=40, mensagem="SALVANDO"):
-  
+
   preenchido = int(percentual / 100 * largura)
   barra = '█' * preenchido + '░' * (largura - preenchido)
 
@@ -292,7 +291,7 @@ def progress_bar(percentual, largura=40, mensagem="SALVANDO"):
 
 
 def loading_simulator(tempo_total=3, largura_barra=50):
-  
+
   intervalos = 100
   intervalo_tempo = tempo_total / intervalos
 
